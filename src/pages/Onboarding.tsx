@@ -18,24 +18,42 @@ const Onboarding = () => {
     gender: "",
     height: "",
     weight: "",
+    bodyFat: "",
     // Goals
     primaryGoal: "",
     targetWeight: "",
     skillGoals: [] as string[],
+    motivation: "",
+    timeframe: "",
     // Training
     experience: "",
     daysPerWeek: "",
     sessionLength: "",
+    preferredTime: "",
+    location: "",
     equipment: [] as string[],
+    currentMaxes: {
+      pushups: "",
+      pullups: "",
+      squats: "",
+      plankSeconds: "",
+    },
     // Lifestyle
     activityLevel: "",
     dietStyle: "",
     sleepHours: "",
+    hydrationLiters: "",
+    stressLevel: "",
+    injuries: "",
+    // Preferences
+    coachingStyle: "",
+    musicPreference: "",
+    notificationPreference: "",
   });
   
   const navigate = useNavigate();
   const { toast } = useToast();
-  const totalSteps = 4;
+  const totalSteps = 6;
 
   const handleInputChange = (field: string, value: string) => {
     setFormData(prev => ({ ...prev, [field]: value }));
@@ -135,6 +153,18 @@ const Onboarding = () => {
                 />
               </div>
             </div>
+
+            <div className="space-y-2">
+              <Label htmlFor="bodyFat">Body Fat % (optional)</Label>
+              <Input
+                id="bodyFat"
+                type="number"
+                placeholder="15"
+                value={formData.bodyFat}
+                onChange={(e) => handleInputChange("bodyFat", e.target.value)}
+                className="glass-card border-border/20"
+              />
+            </div>
           </div>
         );
 
@@ -189,6 +219,35 @@ const Onboarding = () => {
                   onChange={(e) => handleInputChange("targetWeight", e.target.value)}
                   className="glass-card border-border/20"
                 />
+              </div>
+
+              <div className="space-y-2">
+                <Label>Motivation Level (1-10)</Label>
+                <Select value={formData.motivation} onValueChange={(value) => handleInputChange("motivation", value)}>
+                  <SelectTrigger className="glass-card border-border/20">
+                    <SelectValue placeholder="How motivated are you?" />
+                  </SelectTrigger>
+                  <SelectContent>
+                    {[...Array(10)].map((_, i) => (
+                      <SelectItem key={i + 1} value={(i + 1).toString()}>{i + 1} - {i < 3 ? 'Low' : i < 7 ? 'Medium' : 'High'}</SelectItem>
+                    ))}
+                  </SelectContent>
+                </Select>
+              </div>
+
+              <div className="space-y-2">
+                <Label>Target Timeframe</Label>
+                <Select value={formData.timeframe} onValueChange={(value) => handleInputChange("timeframe", value)}>
+                  <SelectTrigger className="glass-card border-border/20">
+                    <SelectValue placeholder="When do you want to reach your goal?" />
+                  </SelectTrigger>
+                  <SelectContent>
+                    <SelectItem value="3-months">3 months</SelectItem>
+                    <SelectItem value="6-months">6 months</SelectItem>
+                    <SelectItem value="1-year">1 year</SelectItem>
+                    <SelectItem value="no-rush">No specific timeline</SelectItem>
+                  </SelectContent>
+                </Select>
               </div>
             </div>
           </div>
@@ -249,6 +308,39 @@ const Onboarding = () => {
                 </div>
               </div>
 
+              <div className="grid md:grid-cols-2 gap-4">
+                <div className="space-y-2">
+                  <Label>Preferred Training Time</Label>
+                  <Select value={formData.preferredTime} onValueChange={(value) => handleInputChange("preferredTime", value)}>
+                    <SelectTrigger className="glass-card border-border/20">
+                      <SelectValue placeholder="When do you prefer to train?" />
+                    </SelectTrigger>
+                    <SelectContent>
+                      <SelectItem value="early-morning">Early Morning (5-7 AM)</SelectItem>
+                      <SelectItem value="morning">Morning (7-10 AM)</SelectItem>
+                      <SelectItem value="afternoon">Afternoon (12-5 PM)</SelectItem>
+                      <SelectItem value="evening">Evening (5-8 PM)</SelectItem>
+                      <SelectItem value="night">Night (8-11 PM)</SelectItem>
+                    </SelectContent>
+                  </Select>
+                </div>
+
+                <div className="space-y-2">
+                  <Label>Training Location</Label>
+                  <Select value={formData.location} onValueChange={(value) => handleInputChange("location", value)}>
+                    <SelectTrigger className="glass-card border-border/20">
+                      <SelectValue placeholder="Where will you train?" />
+                    </SelectTrigger>
+                    <SelectContent>
+                      <SelectItem value="home">Home</SelectItem>
+                      <SelectItem value="gym">Gym</SelectItem>
+                      <SelectItem value="park">Park/Outdoor</SelectItem>
+                      <SelectItem value="mixed">Mixed locations</SelectItem>
+                    </SelectContent>
+                  </Select>
+                </div>
+              </div>
+
               <div className="space-y-2">
                 <Label>Available Equipment</Label>
                 <div className="grid md:grid-cols-2 gap-3">
@@ -262,6 +354,68 @@ const Onboarding = () => {
                       <Label htmlFor={equipment} className="text-sm">{equipment}</Label>
                     </div>
                   ))}
+                </div>
+              </div>
+
+              <div className="space-y-4">
+                <Label>Current Performance (help us calibrate your program)</Label>
+                <div className="grid md:grid-cols-2 gap-4">
+                  <div className="space-y-2">
+                    <Label htmlFor="pushups">Max Push-ups</Label>
+                    <Input
+                      id="pushups"
+                      type="number"
+                      placeholder="20"
+                      value={formData.currentMaxes.pushups}
+                      onChange={(e) => setFormData(prev => ({
+                        ...prev,
+                        currentMaxes: { ...prev.currentMaxes, pushups: e.target.value }
+                      }))}
+                      className="glass-card border-border/20"
+                    />
+                  </div>
+                  <div className="space-y-2">
+                    <Label htmlFor="pullups">Max Pull-ups</Label>
+                    <Input
+                      id="pullups"
+                      type="number"
+                      placeholder="5"
+                      value={formData.currentMaxes.pullups}
+                      onChange={(e) => setFormData(prev => ({
+                        ...prev,
+                        currentMaxes: { ...prev.currentMaxes, pullups: e.target.value }
+                      }))}
+                      className="glass-card border-border/20"
+                    />
+                  </div>
+                  <div className="space-y-2">
+                    <Label htmlFor="squats">Max Squats</Label>
+                    <Input
+                      id="squats"
+                      type="number"
+                      placeholder="50"
+                      value={formData.currentMaxes.squats}
+                      onChange={(e) => setFormData(prev => ({
+                        ...prev,
+                        currentMaxes: { ...prev.currentMaxes, squats: e.target.value }
+                      }))}
+                      className="glass-card border-border/20"
+                    />
+                  </div>
+                  <div className="space-y-2">
+                    <Label htmlFor="plank">Plank Hold (seconds)</Label>
+                    <Input
+                      id="plank"
+                      type="number"
+                      placeholder="60"
+                      value={formData.currentMaxes.plankSeconds}
+                      onChange={(e) => setFormData(prev => ({
+                        ...prev,
+                        currentMaxes: { ...prev.currentMaxes, plankSeconds: e.target.value }
+                      }))}
+                      className="glass-card border-border/20"
+                    />
+                  </div>
                 </div>
               </div>
             </div>
@@ -319,6 +473,153 @@ const Onboarding = () => {
                   className="glass-card border-border/20"
                 />
               </div>
+
+              <div className="space-y-2">
+                <Label htmlFor="hydration">Daily Water Intake (liters)</Label>
+                <Input
+                  id="hydration"
+                  type="number"
+                  placeholder="2.5"
+                  step="0.1"
+                  value={formData.hydrationLiters}
+                  onChange={(e) => handleInputChange("hydrationLiters", e.target.value)}
+                  className="glass-card border-border/20"
+                />
+              </div>
+
+              <div className="space-y-2">
+                <Label>Current Stress Level</Label>
+                <Select value={formData.stressLevel} onValueChange={(value) => handleInputChange("stressLevel", value)}>
+                  <SelectTrigger className="glass-card border-border/20">
+                    <SelectValue placeholder="How stressed are you typically?" />
+                  </SelectTrigger>
+                  <SelectContent>
+                    <SelectItem value="low">Low (1-3)</SelectItem>
+                    <SelectItem value="moderate">Moderate (4-6)</SelectItem>
+                    <SelectItem value="high">High (7-8)</SelectItem>
+                    <SelectItem value="very-high">Very High (9-10)</SelectItem>
+                  </SelectContent>
+                </Select>
+              </div>
+
+              <div className="space-y-2">
+                <Label htmlFor="injuries">Any injuries or limitations?</Label>
+                <Textarea
+                  id="injuries"
+                  placeholder="Describe any current injuries, past injuries, or physical limitations we should know about..."
+                  value={formData.injuries}
+                  onChange={(e) => handleInputChange("injuries", e.target.value)}
+                  className="glass-card border-border/20"
+                  rows={3}
+                />
+              </div>
+            </div>
+          </div>
+        );
+
+      case 5:
+        return (
+          <div className="space-y-6">
+            <div className="text-center mb-6">
+              <h2 className="text-2xl font-bold mb-2">Training Preferences</h2>
+              <p className="text-muted-foreground">Customize your coaching experience</p>
+            </div>
+
+            <div className="space-y-4">
+              <div className="space-y-2">
+                <Label>Coaching Style</Label>
+                <Select value={formData.coachingStyle} onValueChange={(value) => handleInputChange("coachingStyle", value)}>
+                  <SelectTrigger className="glass-card border-border/20">
+                    <SelectValue placeholder="What motivates you most?" />
+                  </SelectTrigger>
+                  <SelectContent>
+                    <SelectItem value="supportive">Supportive & Encouraging</SelectItem>
+                    <SelectItem value="scientific">Scientific & Data-Driven</SelectItem>
+                    <SelectItem value="tough-love">Tough Love & Challenging</SelectItem>
+                    <SelectItem value="playful">Fun & Playful</SelectItem>
+                  </SelectContent>
+                </Select>
+              </div>
+
+              <div className="space-y-2">
+                <Label>Music Preference During Workouts</Label>
+                <Select value={formData.musicPreference} onValueChange={(value) => handleInputChange("musicPreference", value)}>
+                  <SelectTrigger className="glass-card border-border/20">
+                    <SelectValue placeholder="What gets you pumped?" />
+                  </SelectTrigger>
+                  <SelectContent>
+                    <SelectItem value="high-energy">High Energy / EDM</SelectItem>
+                    <SelectItem value="hip-hop">Hip Hop / Rap</SelectItem>
+                    <SelectItem value="rock">Rock / Metal</SelectItem>
+                    <SelectItem value="pop">Pop Music</SelectItem>
+                    <SelectItem value="focus">Focus / Instrumental</SelectItem>
+                    <SelectItem value="none">Prefer Silence</SelectItem>
+                  </SelectContent>
+                </Select>
+              </div>
+
+              <div className="space-y-2">
+                <Label>Notification Preferences</Label>
+                <Select value={formData.notificationPreference} onValueChange={(value) => handleInputChange("notificationPreference", value)}>
+                  <SelectTrigger className="glass-card border-border/20">
+                    <SelectValue placeholder="How often should we remind you?" />
+                  </SelectTrigger>
+                  <SelectContent>
+                    <SelectItem value="daily">Daily reminders</SelectItem>
+                    <SelectItem value="workout-days">Only on workout days</SelectItem>
+                    <SelectItem value="weekly">Weekly check-ins</SelectItem>
+                    <SelectItem value="minimal">Minimal notifications</SelectItem>
+                  </SelectContent>
+                </Select>
+              </div>
+            </div>
+          </div>
+        );
+
+      case 6:
+        return (
+          <div className="space-y-6">
+            <div className="text-center mb-6">
+              <h2 className="text-2xl font-bold mb-2">Review Your Profile</h2>
+              <p className="text-muted-foreground">Let's make sure everything looks good</p>
+            </div>
+
+            <div className="space-y-4">
+              <Card className="glass-card">
+                <CardContent className="p-4">
+                  <h3 className="font-semibold mb-2">Basic Info</h3>
+                  <p className="text-sm text-muted-foreground">
+                    {formData.age} years old, {formData.height}cm, {formData.weight}kg
+                  </p>
+                </CardContent>
+              </Card>
+
+              <Card className="glass-card">
+                <CardContent className="p-4">
+                  <h3 className="font-semibold mb-2">Primary Goal</h3>
+                  <p className="text-sm text-muted-foreground">
+                    {formData.primaryGoal} • Motivation: {formData.motivation}/10
+                  </p>
+                </CardContent>
+              </Card>
+
+              <Card className="glass-card">
+                <CardContent className="p-4">
+                  <h3 className="font-semibold mb-2">Training Plan</h3>
+                  <p className="text-sm text-muted-foreground">
+                    {formData.daysPerWeek} days/week • {formData.sessionLength} min sessions • {formData.experience} level
+                  </p>
+                </CardContent>
+              </Card>
+
+              <Card className="glass-card">
+                <CardContent className="p-4">
+                  <h3 className="font-semibold mb-2">Lifestyle</h3>
+                  <p className="text-sm text-muted-foreground">
+                    {formData.sleepHours}h sleep • {formData.hydrationLiters}L water • {formData.stressLevel} stress
+                  </p>
+                </CardContent>
+              </Card>
             </div>
           </div>
         );
