@@ -29,8 +29,8 @@ const Landing = () => {
           </Badge>
           
           <h1 className="text-5xl md:text-7xl font-bold mb-6 leading-tight">
-            Forge Your Perfect{" "}
-            <span className="text-gradient">Physique</span>
+            Unlock Your{" "}
+            <span className="text-gradient">True Potential</span>
           </h1>
           
           <p className="text-xl md:text-2xl text-muted-foreground mb-8 max-w-3xl mx-auto leading-relaxed">
@@ -40,10 +40,10 @@ const Landing = () => {
           
           <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
             <Button size="lg" className="hover-glow animate-glow-pulse" asChild>
-              <Link to="/register">Start Your Journey</Link>
+              <Link to="/onboarding">Start Your Journey</Link>
             </Button>
             <Button variant="outline" size="lg" className="glass-card border-primary/20" asChild>
-              <Link to="/pricing">View Pricing</Link>
+              <Link to="#features">Learn More</Link>
             </Button>
           </div>
           
@@ -54,9 +54,9 @@ const Landing = () => {
       </section>
 
       {/* Value Propositions */}
-      <section className="py-20 container mx-auto px-4">
+      <section id="features" className="py-20 container mx-auto px-4">
         <div className="text-center mb-16">
-          <h2 className="text-4xl font-bold mb-4">Why Choose FitForge?</h2>
+          <h2 className="text-4xl font-bold mb-4">Why Choose ExilsFit?</h2>
           <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
             Experience the future of personalized calisthenics training
           </p>
@@ -116,7 +116,7 @@ const Landing = () => {
               {
                 name: "Sarah M.",
                 achievement: "First Muscle-Up in 6 months",
-                quote: "FitForge's progressive training got me my first muscle-up! The personalized approach made all the difference.",
+                quote: "ExilsFit's progressive training got me my first muscle-up! The personalized approach made all the difference.",
                 rating: 5
               },
               {
@@ -153,51 +153,65 @@ const Landing = () => {
         </div>
       </section>
 
-      {/* Pricing Preview */}
+      {/* Features Highlight */}
       <section className="py-20 container mx-auto px-4">
         <div className="text-center mb-16">
-          <h2 className="text-4xl font-bold mb-4">Simple Pricing</h2>
+          <h2 className="text-4xl font-bold mb-4">Complete Training System</h2>
           <p className="text-xl text-muted-foreground">
-            Everything you need to transform your body
+            Everything you need to master calisthenics
           </p>
         </div>
         
-        <div className="max-w-md mx-auto">
-          <Card className="glass-card border-primary/20 hover-glow">
-            <CardContent className="p-8 text-center">
-              <Badge className="mb-4 gradient-primary">Most Popular</Badge>
-              <h3 className="text-2xl font-bold mb-2">Premium Plan</h3>
-              <div className="text-4xl font-bold mb-4">
-                <span className="text-gradient">€9</span>
-                <span className="text-lg text-muted-foreground">/month</span>
-              </div>
-              <ul className="text-left space-y-3 mb-8">
-                <li className="flex items-center">
-                  <span className="text-primary mr-2">✓</span>
-                  Personalized workout plans
-                </li>
-                <li className="flex items-center">
-                  <span className="text-primary mr-2">✓</span>
-                  Progress tracking & analytics
-                </li>
-                <li className="flex items-center">
-                  <span className="text-primary mr-2">✓</span>
-                  Skill progression system
-                </li>
-                <li className="flex items-center">
-                  <span className="text-primary mr-2">✓</span>
-                  Nutrition guidance
-                </li>
-                <li className="flex items-center">
-                  <span className="text-primary mr-2">✓</span>
-                  Community access
-                </li>
-              </ul>
-              <Button size="lg" className="w-full hover-glow" asChild>
-                <Link to="/pricing">Get Started</Link>
-              </Button>
-            </CardContent>
-          </Card>
+        <div className="max-w-4xl mx-auto">
+          <div className="grid md:grid-cols-2 gap-8">
+            <Card className="glass-card hover-glow">
+              <CardContent className="p-6">
+                <div className="w-12 h-12 gradient-primary rounded-full flex items-center justify-center mb-4">
+                  <span className="text-xl">📊</span>
+                </div>
+                <h3 className="text-xl font-bold mb-2">Smart Analytics</h3>
+                <p className="text-muted-foreground">
+                  Track your progress with detailed analytics and performance insights to optimize your training.
+                </p>
+              </CardContent>
+            </Card>
+            
+            <Card className="glass-card hover-glow">
+              <CardContent className="p-6">
+                <div className="w-12 h-12 gradient-primary rounded-full flex items-center justify-center mb-4">
+                  <span className="text-xl">🎯</span>
+                </div>
+                <h3 className="text-xl font-bold mb-2">Goal-Oriented</h3>
+                <p className="text-muted-foreground">
+                  Whether it's strength, skills, or body composition - we'll create the perfect plan for your goals.
+                </p>
+              </CardContent>
+            </Card>
+            
+            <Card className="glass-card hover-glow">
+              <CardContent className="p-6">
+                <div className="w-12 h-12 gradient-primary rounded-full flex items-center justify-center mb-4">
+                  <span className="text-xl">🔄</span>
+                </div>
+                <h3 className="text-xl font-bold mb-2">Adaptive Training</h3>
+                <p className="text-muted-foreground">
+                  Your program evolves with you, adjusting intensity and complexity as you get stronger.
+                </p>
+              </CardContent>
+            </Card>
+            
+            <Card className="glass-card hover-glow">
+              <CardContent className="p-6">
+                <div className="w-12 h-12 gradient-primary rounded-full flex items-center justify-center mb-4">
+                  <span className="text-xl">💪</span>
+                </div>
+                <h3 className="text-xl font-bold mb-2">Skill Mastery</h3>
+                <p className="text-muted-foreground">
+                  Master advanced movements like handstands, muscle-ups, and levers with structured progressions.
+                </p>
+              </CardContent>
+            </Card>
+          </div>
         </div>
       </section>
 
@@ -206,10 +220,10 @@ const Landing = () => {
         <div className="container mx-auto px-4 text-center">
           <h2 className="text-4xl font-bold mb-4">Ready to Transform?</h2>
           <p className="text-xl text-muted-foreground mb-8 max-w-2xl mx-auto">
-            Join thousands who have already started their calisthenics journey with FitForge
+            Join thousands who have already started their calisthenics journey with ExilsFit
           </p>
           <Button size="lg" className="hover-glow animate-glow-pulse" asChild>
-            <Link to="/register">Start Free Trial</Link>
+            <Link to="/onboarding">Start Your Journey</Link>
           </Button>
         </div>
       </section>
@@ -220,12 +234,12 @@ const Landing = () => {
           <div className="flex flex-col md:flex-row items-center justify-between">
             <div className="flex items-center space-x-2 mb-4 md:mb-0">
               <div className="w-8 h-8 gradient-primary rounded-lg flex items-center justify-center">
-                <span className="text-white font-bold text-lg">F</span>
+                <span className="text-white font-bold text-lg">E</span>
               </div>
-              <span className="text-xl font-bold text-gradient">FitForge</span>
+              <span className="text-xl font-bold text-gradient">ExilsFit</span>
             </div>
             <div className="text-sm text-muted-foreground">
-              © 2024 FitForge. All rights reserved.
+              © 2024 ExilsFit. All rights reserved.
             </div>
           </div>
         </div>

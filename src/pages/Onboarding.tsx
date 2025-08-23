@@ -64,13 +64,13 @@ const Onboarding = () => {
 
   const handleComplete = () => {
     toast({
-      title: "Profile complete!",
-      description: "Your personalized plan is being generated...",
+      title: "Information saved!",
+      description: "Now let's create your account to continue...",
     });
     
     setTimeout(() => {
-      navigate("/dashboard");
-    }, 2000);
+      navigate("/register");
+    }, 1500);
   };
 
   const renderStep = () => {
@@ -370,7 +370,7 @@ const Onboarding = () => {
                   </Button>
                 ) : (
                   <Button onClick={handleComplete} className="hover-glow">
-                    Complete Setup
+                    Continue to Registration
                   </Button>
                 )}
               </div>

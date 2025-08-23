@@ -13,9 +13,9 @@ export const Navbar = () => {
           {/* Logo */}
           <Link to="/" className="flex items-center space-x-2">
             <div className="w-8 h-8 gradient-primary rounded-lg flex items-center justify-center">
-              <span className="text-white font-bold text-lg">F</span>
+              <span className="text-white font-bold text-lg">E</span>
             </div>
-            <span className="text-xl font-bold text-gradient">FitForge</span>
+            <span className="text-xl font-bold text-gradient">ExilsFit</span>
           </Link>
 
           {/* Desktop Navigation */}
@@ -23,14 +23,11 @@ export const Navbar = () => {
             <Link to="/" className="text-foreground hover:text-primary transition-smooth">
               Home
             </Link>
-            <Link to="/pricing" className="text-foreground hover:text-primary transition-smooth">
-              Pricing
-            </Link>
             <Link to="/login" className="text-foreground hover:text-primary transition-smooth">
               Login
             </Link>
             <Button variant="hero" asChild>
-              <Link to="/register">Get Started</Link>
+              <Link to="/onboarding">Get Started</Link>
             </Button>
           </div>
 
@@ -68,13 +65,6 @@ export const Navbar = () => {
                 Home
               </Link>
               <Link 
-                to="/pricing" 
-                className="text-foreground hover:text-primary transition-smooth"
-                onClick={() => setIsOpen(false)}
-              >
-                Pricing
-              </Link>
-              <Link 
                 to="/login" 
                 className="text-foreground hover:text-primary transition-smooth"
                 onClick={() => setIsOpen(false)}
@@ -82,7 +72,7 @@ export const Navbar = () => {
                 Login
               </Link>
               <Button variant="hero" asChild className="w-full">
-                <Link to="/register" onClick={() => setIsOpen(false)}>Get Started</Link>
+                <Link to="/onboarding" onClick={() => setIsOpen(false)}>Get Started</Link>
               </Button>
             </div>
           </div>

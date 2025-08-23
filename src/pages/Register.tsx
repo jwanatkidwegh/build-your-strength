@@ -43,10 +43,10 @@ const Register = () => {
     setTimeout(() => {
       toast({
         title: "Account created!",
-        description: "Welcome to FitForge. Let's get you started.",
+        description: "Welcome to ExilsFit. Your personalized plan is ready!",
       });
       setIsLoading(false);
-      navigate("/onboarding");
+      navigate("/dashboard");
     }, 1000);
   };
 

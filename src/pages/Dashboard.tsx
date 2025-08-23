@@ -23,10 +23,10 @@ const Dashboard = () => {
                     <span className="text-2xl">🚀</span>
                   </div>
                   <CardTitle className="text-3xl font-bold">
-                    Unlock Your Full Potential
+                    Your Personalized Plan is Ready!
                   </CardTitle>
                   <p className="text-muted-foreground text-lg">
-                    Get access to personalized workouts, progress tracking, and premium features
+                    Based on your profile, we've created the perfect calisthenics program for you
                   </p>
                 </CardHeader>
                 
@@ -83,7 +83,7 @@ const Dashboard = () => {
                       <span className="text-lg text-muted-foreground">/month</span>
                     </div>
                     <Button size="lg" className="hover-glow animate-glow-pulse" asChild>
-                      <Link to="/pricing">Upgrade to Premium</Link>
+                      <Link to="/pricing">Unlock Your Plan</Link>
                     </Button>
                     <p className="text-sm text-muted-foreground mt-4">
                       7-day free trial • Cancel anytime
